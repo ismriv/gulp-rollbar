@@ -22,3 +22,6 @@ gulp.task('javascript', function() {
     .pipe(gulp.dest('dist'));
 });
 ```
+
+[npm-image]: https://img.shields.io/npm/v/gulp-rollbar.svg?style=flat
+[npm-url]: https://npmjs.org/package/gulp-rollbar
