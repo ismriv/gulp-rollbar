@@ -1,5 +1,15 @@
 ## gulp-rollbar  [![NPM version][npm-image]][npm-url]
 
+## Install
+
+```sh
+$ npm install gulp-rollbar --save-dev
+```
+
+### Requirements
+
+Following Gulp's philosophy, gulp-rollbar does not generate any the source map, but delegates this task to [gulp-sourcemaps](https://www.npmjs.org/package/gulp-sourcemaps). Just make sure you call `sourcemaps.init()` in the pipeline before `rollbar()`.
+
 ### Usage
 
 ```javascript
