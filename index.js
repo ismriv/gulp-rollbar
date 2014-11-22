@@ -32,8 +32,7 @@ function rollbar(options) {
     /*jshint validthis:true, camelcase:false*/
 
     if (file.isNull() || !file.sourceMap) {
-      this.push(file);
-      return callback();
+      return callback(null, file);
     }
 
     if (file.isStream()) {
@@ -72,7 +71,7 @@ function rollbar(options) {
         gutil.log('Failed to upload sourcemap file to Rollbar. Server responded', httpResponse.statusCode, 'with error `' + message + '`');
       }
 
-      callback();
+      callback(null, file);
     });
   }
 
