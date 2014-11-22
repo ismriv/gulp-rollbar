@@ -1,6 +1,6 @@
 ## gulp-rollbar  [![NPM version][npm-image]][npm-url]
 
-## Install
+### Install
 
 ```sh
 $ npm install gulp-rollbar --save-dev
