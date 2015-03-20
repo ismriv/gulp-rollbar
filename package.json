@@ -17,6 +17,7 @@
   "author": "Ismael Rivera <me@ismaelrivera.es>",
   "license": "ISC",
   "dependencies": {
+    "gulp-util": "^3.0.2",
     "request": "2.48.x",
     "through2": "0.6.x",
     "vinyl": "0.4.x"
