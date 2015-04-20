@@ -19,6 +19,7 @@
   "dependencies": {
     "gulp-util": "3.0.x",
     "request": "2.48.x",
+    "requestretry": "^1.2.2",
     "through2": "0.6.x",
     "vinyl": "0.4.x"
   }
