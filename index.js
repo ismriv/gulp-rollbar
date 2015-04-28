@@ -4,7 +4,7 @@ var path = require('path');
 var File = require('vinyl');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
-var request = require('request');
+var requestRetry = require('requestretry');
 
 var PLUGIN_NAME = 'gulp-rollbar';
 var API_URL = 'https://api.rollbar.com/api/1/sourcemap';
@@ -59,7 +59,23 @@ function rollbar(options) {
         }
       }
     };
-    request.post({url: API_URL, formData: formData}, function (err, httpResponse, body) {
+
+    function retryStrategyWithLog(err, response) {
+      // Uses default strategy but use custom strategy to trigger logs.
+      if (err || response.statusCode != 200) {
+        gutil.log('Retrying failed rollbar sourcemap upload: ' + err);
+      }
+      return requestRetry.RetryStrategies.HTTPOrNetworkError(err, response);
+    }
+
+    requestRetry(
+      {
+        url: API_URL,
+        method: 'POST',
+        formData: formData,
+        maxAttempts: 10,
+        retryStrategy:retryStrategyWithLog
+      }, function (err, httpResponse, body) {
       if (err) {
         throw new PluginError(PLUGIN_NAME, err, {showStack: true});
       }
