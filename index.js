@@ -68,14 +68,13 @@ function rollbar(options) {
       return requestRetry.RetryStrategies.HTTPOrNetworkError(err, response);
     }
 
-    requestRetry(
-      {
-        url: API_URL,
-        method: 'POST',
-        formData: formData,
-        maxAttempts: 10,
-        retryStrategy:retryStrategyWithLog
-      }, function (err, httpResponse, body) {
+    requestRetry({
+      url: API_URL,
+      method: 'POST',
+      formData: formData,
+      maxAttempts: 10,
+      retryStrategy: retryStrategyWithLog
+    }, function (err, httpResponse, body) {
       if (err) {
         throw new PluginError(PLUGIN_NAME, err, {showStack: true});
       }
