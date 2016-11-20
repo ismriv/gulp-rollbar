@@ -25,7 +25,7 @@ function rollbar(options) {
     throw new PluginError(PLUGIN_NAME, 'Missing `version`!');
   }
   if (!options.sourceMappingURLPrefix) {
-    throw new PluginError(PLUGIN_NAME, 'Missing `sourceMappingURLPrefix`!');
+    options.sourceMappingURLPrefix = '';
   }
 
   function postSourcemap(file, encoding, callback) {
