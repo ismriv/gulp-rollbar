@@ -1,6 +1,6 @@
 {
   "name": "gulp-rollbar",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Upload source map files to Rollbar.com",
   "homepage": "http://github.com/ismriv/gulp-rollbar",
   "repository": "git://github.com/ismriv/gulp-rollbar.git",
@@ -17,7 +17,8 @@
   "author": "Ismael Rivera <me@ismaelrivera.es>",
   "license": "ISC",
   "dependencies": {
-    "gulp-util": "3.0.x",
+    "fancy-log": "^1.3.2",
+    "plugin-error": "^1.0.1",
     "request": "2.48.x",
     "requestretry": "^1.2.2",
     "through2": "0.6.x",

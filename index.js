@@ -2,8 +2,8 @@
 var through = require('through2');
 var path = require('path');
 var File = require('vinyl');
-var gutil = require('gulp-util');
-var PluginError = gutil.PluginError;
+var log = require('fancy-log');
+var PluginError = require('plugin-error');
 var requestRetry = require('requestretry');
 
 var PLUGIN_NAME = 'gulp-rollbar';
@@ -63,7 +63,7 @@ function rollbar(options) {
     function retryStrategyWithLog(err, response) {
       // Uses default strategy but use custom strategy to trigger logs.
       if (err || response.statusCode != 200) {
-        gutil.log('Retrying failed rollbar sourcemap upload: ' + err);
+        log('Retrying failed rollbar sourcemap upload: ' + err);
       }
       return requestRetry.RetryStrategies.HTTPOrNetworkError(err, response);
     }
@@ -80,10 +80,10 @@ function rollbar(options) {
       }
 
       if (httpResponse.statusCode === 200) {
-        gutil.log(formData.source_map.options.filename + ' uploaded successfully to Rollbar');
+        log(formData.source_map.options.filename + ' uploaded successfully to Rollbar');
       } else {
         var message = JSON.parse(body).message;
-        gutil.log('Failed to upload sourcemap file to Rollbar. Server responded', httpResponse.statusCode, 'with error `' + message + '`');
+        log('Failed to upload sourcemap file to Rollbar. Server responded', httpResponse.statusCode, 'with error `' + message + '`');
       }
 
       callback(null, file);
